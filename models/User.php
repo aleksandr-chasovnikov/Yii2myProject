@@ -3,8 +3,10 @@
 namespace app\models;
 
 use Yii;
+use \yii\web\IdentityInterface;
+use \yii\db\ActiveRecord;
 
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
     public $id;
     public $username;
@@ -103,4 +105,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->password === $password;
     }
+
+    public function setPassword($password)
+    {
+        $this->password = sha1($password);
+    }
+
+    public function generateAuthKey()
+    {
+  
+                $this->auth_key = \Yii::$app->security->generateRandomString();
+
+    }
+
 }

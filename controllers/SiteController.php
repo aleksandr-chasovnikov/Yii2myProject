@@ -134,18 +134,23 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
 
-        if ( $model->load( Yii::$app->request->post() ) ) { // Если есть, загружаем post данные в модель через родительский метод load класса Model
-            if ( $user = $model->signup() ) { // Регистрация
+        // if ($model->load( Yii::$app->request->post() ) && $model->validate()) {
 
-                if ( Yii::$app->getUser()->login($user) ) { // Логиним пользователя если регистрация успешна
-                    
-                    return $this->goHome(); // Возвращаем на главную страницу
-                }
+        //     $model->signup();
+ 
+        //     return $this->goHome();
+        // }
+        
+        if (isset($_POST['SignupForm'])) {
+            $model->attributes = Yii::$app->request->post('SignupForm');
+
+            if ( $model->validate() && $model->signup() ) {
+
+                return $this->goHome();
             }
         }
 
-        return $this->render('signup', [ // Просто рендерим вид если один из if вернул false
-            'model' => $model,
-        ]);
+        return $this->render('signup', ['model' => $model]);
+        
     }
 }
