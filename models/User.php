@@ -8,11 +8,17 @@ use \yii\db\ActiveRecord;
 
 class User extends ActiveRecord implements IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
+    // public $id;
+    // public $username;
+    // public $password;
+    // public $authKey;
+    // public $accessToken;
+
+    const STATUS_DELETED = 0;
+    const STATUS_NOT_ACTIVE = 1;
+    const STATUS_ACTIVE = 10;
+
+    
 
     private static $users = [
         '100' => [
@@ -20,14 +26,14 @@ class User extends ActiveRecord implements IdentityInterface
             'username' => 'admin',
             'password' => 'admin',
             'authKey' => 'test100key',
-            'accessToken' => '100-token',
+            // 'accessToken' => '100-token',
         ],
         '101' => [
             'id' => '101',
             'username' => 'demo',
             'password' => 'demo',
             'authKey' => 'test101key',
-            'accessToken' => '101-token',
+            // 'accessToken' => '101-token',
         ],
     ];
 
@@ -108,14 +114,12 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function setPassword($password)
     {
-        $this->password = sha1($password);
+        $this->password = Yii::$app->getSecurity()->generatePasswordHash($password);
     }
 
     public function generateAuthKey()
-    {
-  
-                $this->auth_key = \Yii::$app->security->generateRandomString();
-
+    {  
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
 }

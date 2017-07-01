@@ -1,21 +1,20 @@
 
 <div class="container">
-	<!-- Example row of columns -->
 	<div class="row">
-
 			<div class="content">
 				<h2><?= $post->title ?></h2>
 
 				<?php if (!empty($post->img)): ?>
 
 					<div class="text-center">
-						<img src="uploads/<?= $post->img ?>" alt="" align="middle" width="90%">
+						<img src="assets/<?= $post->img ?>" alt="image" align="middle" width="90%">
 					</div>
 
 				<?php endif; ?>
 
 				<p><?= $post->text ?></p>
 			</div>
+			
 			<hr>
 
 			<!-- <?php //foreach($comments as $comment): ?> -->

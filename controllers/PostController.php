@@ -21,15 +21,15 @@ class PostController extends AppController
                 ->orderBy('id DESC');
 
         $pagination = new Pagination([
-            'defaultPageSize' => 2,
-            'totalCount' => $query->count(),
-            'pageSizeParam' => false,  // улучшить вид адресной строки
-            'forcePageParam' => false, // улучшить вид адресной строки
+            'defaultPageSize' => 2,          //Поскольку записей выводить на одну страницу
+            'totalCount' => $query->count(), //Общее кол-во записей
+            'pageSizeParam' => false,        // улучшить вид адресной строки
+            'forcePageParam' => false,       // улучшить вид адресной строки
         ]);
 
-        $posts = $query
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
+        $posts = $query                      
+            ->offset($pagination->offset)    
+            ->limit($pagination->limit)      
             ->all();
 
         return $this->render('index', compact('posts', 'pagination'));
@@ -41,6 +41,7 @@ class PostController extends AppController
     public function actionView()
     {
         $id = \Yii::$app->request->get('id');
+        
         $post = Post::findOne($id);
 
         if (empty($post)) throw new \yii\web\HttpException(404, 'Такой страницы нет...');

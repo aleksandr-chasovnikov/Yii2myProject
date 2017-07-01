@@ -25,7 +25,7 @@ class SignupForm extends Model //модеь-прослойка
         ];
     }
 
-    public function attributeLabels() // Используется для локализации
+    public function attributeLabels() // Псевдонимы в представлении
     {
         return [
             'username' => 'Логин',

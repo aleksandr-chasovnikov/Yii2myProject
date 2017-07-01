@@ -134,23 +134,23 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
 
-        // if ($model->load( Yii::$app->request->post() ) && $model->validate()) {
+        if ($model->load( Yii::$app->request->post() ) && $model->validate()) {
 
-        //     $model->signup();
+            $model->signup();
  
-        //     return $this->goHome();
-        // }
-        
-        if (isset($_POST['SignupForm'])) {
-            $model->attributes = Yii::$app->request->post('SignupForm');
-
-            if ( $model->validate() && $model->signup() ) {
-
-                return $this->goHome();
-            }
+            return $this->goHome();
         }
+        
+        // if (isset($_POST['SignupForm'])) {
+        //     $model->attributes = Yii::$app->request->post('SignupForm');
 
-        return $this->render('signup', ['model' => $model]);
+        //     if ( $model->validate() ) {
+
+        //         return $this->goHome();
+        //     }
+        // }
+
+        return $this->render('signup', compact('model'));
         
     }
 }

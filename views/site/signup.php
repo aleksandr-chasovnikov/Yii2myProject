@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title; // <-- Небольшая нав�
             <?= $form->field($model, 'password')->passwordInput() ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>
             
             <?php ActiveForm::end(); ?>
