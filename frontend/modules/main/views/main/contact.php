@@ -14,9 +14,10 @@ use yii\captcha\Captcha;
 		// 'enableAjaxValidation' => true,
 		]) ?>
 
-		<?= $form->field($model, 'rname') ?>
+		<?= $form->field($model, 'name') ?>
 		<?= $form->field($model, 'email') ?>
-		<?= $form->field($model, 'subject')->textArea(['rows' => 6]) ?>
+		<?= $form->field($model, 'subject')->textArea(['rows' => 3]) ?>
+		<?= $form->field($model, 'body')->textArea(['rows' => 8]) ?>
 		<?= $form->field($model, 'verifyCode')->widget( Captcha::className(), [
 			'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
 			'captchaAction' => Url::to(['main/captcha'])

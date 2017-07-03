@@ -39,6 +39,18 @@ class SignupForm extends Model
     }
 
     /**
+     * Группировка свойств 
+    */
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        // $scenarios['short_register'] = ['username', 'email'];
+        // $scenarios['short_register2'] = ['username', 'email', 'password'];
+
+        return $scenarios;
+    }
+
+    /**
      * Signs user up.
      *
      * @return User|null the saved model or null if saving fails

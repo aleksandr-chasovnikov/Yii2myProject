@@ -4,6 +4,7 @@ namespace app\modules\main\controllers;
 use Yii;
 use frontend\models\Image;
 use frontend\models\SignupForm;
+use frontend\models\ContactForm;
 
 class MainController extends \yii\web\Controller
 {
@@ -22,6 +23,10 @@ class MainController extends \yii\web\Controller
 				'class' => 'yii\captcha\CaptchaAction',
 				'fixedVerifyCode' => YII_ENV_TEST ? 'testme' :null,
 			],
+			'test' => [
+				'class' => 'frontend\actions\TestAction',
+				// 'viewNames' => 'test1',
+			]
 		];
 	}
 
@@ -39,8 +44,9 @@ class MainController extends \yii\web\Controller
     public function actionRegister()
     {
     	$model = new SignupForm;
+    	// $model->scenario = 'short_register'; // Сценарий
 
-    	// if (Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+    	// if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post()) ) {
     	// 	Yii::$app->response->format= Response::FORMAT_JSON;
     	// 	return ActiveForm::validate($model);
     	// }
@@ -60,7 +66,20 @@ class MainController extends \yii\web\Controller
 	 */
     public function actionContact()
     {
-    	return $this->render('contact');
-    }
+    	$model = new ContactForm();
 
+    	if( $model->load(Yii::$app->request->post()) && $model->validate() ) {
+
+    		if(Yii::$app->common->sendMail($model->subject, $model->body)) {
+
+    		echo 'hello';die;
+    		} else {
+
+    		echo 'почти';die;
+    		}
+    	}
+
+    	return $this->render('contact', compact('model'));
+    }
+    
 }

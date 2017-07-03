@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'defaultRoute' => 'main',
     'modules' => [
         'main' => [
             'class' => 'app\modules\main\Module',
@@ -28,15 +29,17 @@ return [
         'mail' => [
             'class'            => 'zyx\phpmailer\Mailer',
             'viewPath'         => '@common/mail',
-            'useFileTransport' => false,
+            'useFileTransport' => false, //false - не сохранять локальную копию
             'config'           => [
                 'mailer'     => 'smtp',
                 'host'       => 'smtp.yandex.ru',
                 'port'       => '465',
                 'smtpsecure' => 'ssl',
                 'smtpauth'   => true,
-                'username'   => '',
-                'password'   => '',
+                'username'   => 'k241285@yandex.ru',
+                'password'   => 'dfhbvfnfc135',
+                'ishtml' => true,
+                'charset' => 'UTF-8',
             ],
         ],
         'common' => [
