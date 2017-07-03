@@ -11,7 +11,37 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'main' => [
+            'class' => 'app\modules\main\Module',
+        ],
+    ],
     'components' => [
+
+    //Чтобы в один компонент передать другой:
+        // 'storage' => [], 
+        // 'component' => function () { return Yii::createObject([
+        //     'class' => 'app\components\Component',
+        //     'storage' => Yii::$app->get('storage'),
+        // ]); },
+    
+        'mail' => [
+            'class'            => 'zyx\phpmailer\Mailer',
+            'viewPath'         => '@common/mail',
+            'useFileTransport' => false,
+            'config'           => [
+                'mailer'     => 'smtp',
+                'host'       => 'smtp.yandex.ru',
+                'port'       => '465',
+                'smtpsecure' => 'ssl',
+                'smtpauth'   => true,
+                'username'   => '',
+                'password'   => '',
+            ],
+        ],
+        'common' => [
+            'class' => 'frontend\components\Common',
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],

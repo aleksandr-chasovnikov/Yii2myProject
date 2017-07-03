@@ -1,0 +1,31 @@
+<?php
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
+?>
+
+<div class="row contact">
+	<div class="col-lg-6 col-sm-6">
+
+		<?php $form = ActiveForm::begin([
+		// 'enableClientValidation' => false,
+		// 'enableAjaxValidation' => true,
+		]) ?>
+
+		<?= $form->field($model, 'rname') ?>
+		<?= $form->field($model, 'email') ?>
+		<?= $form->field($model, 'subject')->textArea(['rows' => 6]) ?>
+		<?= $form->field($model, 'verifyCode')->widget( Captcha::className(), [
+			'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+			'captchaAction' => Url::to(['main/captcha'])
+			]) ?>
+
+		<?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
+
+		<?php ActiveForm::end() ?>
+
+		
+	</div>
+</div>
