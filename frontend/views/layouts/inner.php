@@ -1,12 +1,18 @@
 <?
+
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
+use yii\bootstrap\Alert;
 
 \frontend\assets\MainAsset::register($this);
+
+if( Yii::$app->session->hasFlash('success')) {
+    $success = Yii::$app->session->getFlash('success');
+}
+
+$this->beginPage();
 ?>
-<?
-  $this->beginPage();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,13 +24,9 @@ use yii\bootstrap\Nav;
 
 <body>
 
-<?
- $this->beginBody();
-?>
+<?php $this->beginBody() ?>
+<?= $this->render("//common/head") ?>
 
-<!-- Header Starts -->
-  <? echo $this->render("//common/head") ?>
-<!-- #Header Starts -->
 
 <div class="inside-banner">
     <div class="container">
@@ -37,23 +39,26 @@ use yii\bootstrap\Nav;
 <!-- banner -->
 <div class="container">
     <div class="spacer">
-        <?=$content ?>
+
+<?php if( Yii::$app->session->hasFlash('success')): 
+    $success = Yii::$app->session->getFlash('success');
+    echo Alert::widget(['options' => ['class' => 'alert-info'], 'body' => $success]) ;
+else:
+    echo $content;
+endif;
+?>
+
     </div>
 </div>
 
 
 
-        <? echo $this->render("//common/footer") ?>
-
-<?
-$this->endBody();
-?>
+<?= $this->render("//common/footer") ?>
+<?php $this->endBody() ?>
 
 
 </body>
 </html>
 
-<?
-$this->endPage();
-?>
+<?php $this->endPage() ?>
 

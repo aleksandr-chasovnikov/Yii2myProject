@@ -1,3 +1,9 @@
+<?php 
+
+use yii\helpers\Html;
+
+?>
+
 <div class="footer">
 
     <div class="container">
@@ -18,9 +24,10 @@
             <div class="col-lg-3 col-sm-3">
                 <h4>Newsletter</h4>
                 <p>Get notified about the latest properties in our marketplace.</p>
-                <form class="form-inline" role="form">
-                    <input type="text" placeholder="Enter Your email address" class="form-control">
-                    <button class="btn btn-success" type="button">Notify Me!</button></form>
+                <?= Html::beginForm('', 'post', ['class' => 'form-inline']) ?>
+                    <?= Html::textInput('email', '', ['class' => 'form-control', 'placeholder' => 'Введите ваш email']) ?>
+                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
+                <?= Html::endForm() ?>
             </div>
 
             <div class="col-lg-3 col-sm-3">

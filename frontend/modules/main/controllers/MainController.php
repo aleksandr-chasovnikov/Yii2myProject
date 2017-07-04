@@ -5,6 +5,9 @@ use Yii;
 use frontend\models\Image;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\LoginForm;
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class MainController extends \yii\web\Controller
 {
@@ -41,20 +44,33 @@ class MainController extends \yii\web\Controller
 	/**
 	 * 
 	 */
+    public function actionLogin(){
+        $model = new LoginForm;
+
+        if($model->load(\Yii::$app->request->post()) && $model->login()){
+
+            $this->goBack();
+        }
+
+        return $this->render("login", ['model' => $model]);
+    }
+
+    public function actionLogout(){
+
+        \Yii::$app->user->logout();
+        return $this->goHome();
+    }
+
+	/**
+	 * 
+	 */
     public function actionRegister()
     {
     	$model = new SignupForm;
-    	// $model->scenario = 'short_register'; // Сценарий
-
-    	// if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post()) ) {
-    	// 	Yii::$app->response->format= Response::FORMAT_JSON;
-    	// 	return ActiveForm::validate($model);
-    	// }
 
     	if( $model->load( Yii::$app->request->post()) && $model->signup() ) {
 
-    		print_r($_POST);
-    		die;
+    		Yii::$app->session->setFlash('success', 'Регистрация успешна.');
 
     	}
 
@@ -68,18 +84,15 @@ class MainController extends \yii\web\Controller
     {
     	$model = new ContactForm();
 
-    	if( $model->load(Yii::$app->request->post()) && $model->validate() ) {
+		if ($model->load( Yii::$app->request->post()) 
+			&& $model->sendEmail( Yii::$app->params['emailto'])) {
 
-    		if(Yii::$app->common->sendMail($model->subject, $model->body)) {
+				Yii::$app->session->setFlash('contactFormSubmitted');
 
-    		echo 'hello';die;
-    		} else {
+				return $this->refresh();
+			}
 
-    		echo 'почти';die;
-    		}
-    	}
-
-    	return $this->render('contact', compact('model'));
-    }
+		return $this->render('contact', compact('model'));
+	}
     
 }

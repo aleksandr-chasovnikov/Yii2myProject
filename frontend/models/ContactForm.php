@@ -39,7 +39,11 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'verifyCode' => 'Verification Code',
+            'verifyCode' => 'Подтвердите код',
+            'name' => 'Имя',
+            'email' => 'Электронный адрес',
+            'subject' => 'Тема',
+            'body' => 'Сообщение',
         ];
     }
 
@@ -49,13 +53,42 @@ class ContactForm extends Model
      * @param string $email the target email address
      * @return bool whether the email was sent
      */
-    public function sendEmail($email)
+    // public function sendEmail($email)
+    // {
+    //     return Yii::$app->mail->compose()
+    //         ->setTo($email)
+    //         ->setFrom([$this->email => $this->name])
+    //         ->setSubject($this->subject)
+    //         ->setTextBody($this->body)
+    //         ->send();
+    // }
+    public function sendEmail($emailto)
     {
-        return Yii::$app->mailer->compose()
-            ->setTo($email)
-            ->setFrom([$this->email => $this->name])
-            ->setSubject($this->subject)
-            ->setTextBody($this->body)
-            ->send();
+        if ($this->validate()) {
+
+            Yii::$app->mailer->compose() 
+                ->setFrom([$this->email => $this->name])
+                ->setTo($emailto)
+                ->setSubject($this->subject)
+                ->setTextBody($this->body)
+                ->send();
+
+            return true;
+        }
+        return false;    
     }
+    // {
+    //     if (Yii::$app->mail->compose()
+    //             ->setFrom($emailFrom)
+    //             ->setTo( Yii::$app->params['adminEmail'] )
+    //             ->setSubject($subject)
+    //             ->setTextBody($text)
+    //             ->send()) {
+
+    //         // $this->trigger(self::EVENT_NOTIFY);
+
+    //         return true;
+    //     }
+    //     return false;
+    // }
 }

@@ -1,6 +1,10 @@
+<?php 
+
+use yii\helpers\Html;
+
+?>
+
 <div class="">
-
-
     <div id="slider" class="sl-slider-wrapper">
 
         <div class="sl-slider">
@@ -8,7 +12,7 @@
             <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
                 <div class="sl-slide-inner">
                     <div class="bg-img bg-img-1"></div>
-                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <h2><a href="#">MAIN MAIN</a></h2>
                     <blockquote>
                         <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
                         <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
@@ -32,7 +36,7 @@
             <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
                 <div class="sl-slide-inner">
                     <div class="bg-img bg-img-3"></div>
-                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <h2><a href="#">MAIN MAIN</a></h2>
                     <blockquote>
                         <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
                         <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
@@ -44,7 +48,7 @@
             <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
                 <div class="sl-slide-inner">
                     <div class="bg-img bg-img-4"></div>
-                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <h2><a href="#">MAIN MAIN</a></h2>
                     <blockquote>
                         <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
                         <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
@@ -56,7 +60,7 @@
             <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-5" data-slice2-rotation="10" data-slice1-scale="2" data-slice2-scale="1">
                 <div class="sl-slide-inner">
                     <div class="bg-img bg-img-5"></div>
-                    <h2><a href="#">2 Bed Rooms and 1 Dinning Room Aparment on Sale</a></h2>
+                    <h2><a href="#">MAIN MAIN</a></h2>
                     <blockquote>
                         <p class="location"><span class="glyphicon glyphicon-map-marker"></span> 1890 Syndey, Australia</p>
                         <p>Until he extends the circle of his compassion to all living things, man will not himself find peace.</p>
@@ -87,43 +91,50 @@
         <h3>Buy, Sale & Rent</h3>
         <div class="searchbar">
             <div class="row">
+
+            <?= Html::beginForm() ?>
+
                 <div class="col-lg-6 col-sm-6">
-                    <input type="text" class="form-control" placeholder="Search of Properties">
+                    <?= Html::textInput('search', '', ['class' => 'form-control', 'placeholder' => 'Поиск недвижимости']) ?>
                     <div class="row">
                         <div class="col-lg-3 col-sm-3 ">
-                            <select class="form-control">
-                                <option>Buy</option>
-                                <option>Rent</option>
-                                <option>Sale</option>
-                            </select>
+
+                            <?= Html::dropDownList('buy', '', [
+                                'Buy' => 'Buy',
+                                'Rent' => 'Rent',
+                                'Sale' => 'Sale',
+                            ], ['class' => 'form-control']) ?>
+
                         </div>
                         <div class="col-lg-3 col-sm-4">
-                            <select class="form-control">
+                      <!--       <select class="form-control">
                                 <option>Price</option>
                                 <option>$150,000 - $200,000</option>
                                 <option>$200,000 - $250,000</option>
                                 <option>$250,000 - $300,000</option>
                                 <option>$300,000 - above</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div class="col-lg-3 col-sm-4">
-                            <select class="form-control">
+                      <!--       <select class="form-control">
                                 <option>Property</option>
                                 <option>Apartment</option>
                                 <option>Building</option>
                                 <option>Office Space</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div class="col-lg-3 col-sm-4">
-                            <button class="btn btn-success"  onclick="window.location.href='buysalerent.html'">Find Now</button>
+                            <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
                         </div>
                     </div>
-
-
                 </div>
+
+        <?= Html::endForm() ?>
+
                 <div class="col-lg-5 col-lg-offset-1 col-sm-6 ">
                     <p>Join now and get updated with all the properties deals.</p>
-                    <button class="btn btn-info"   data-toggle="modal" data-target="#loginpop">Login</button>        </div>
+                    <button class="btn btn-info"   data-toggle="modal" data-target="#loginpop">Login</button>
+                </div>
             </div>
         </div>
     </div>
