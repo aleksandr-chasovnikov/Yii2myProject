@@ -32,17 +32,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'hot')->textInput() ?>
+    <?= $form->field($model, 'hot')->radioList(['Нет', 'Да']) ?>
 
-    <?= $form->field($model, 'sold')->textInput() ?>
+    <?= $form->field($model, 'sold')->radioList(['Нет', 'Да']) ?>
 
-    <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'type')->dropDownList(['Квартира', 'Дом', 'Офис']) ?>
 
-    <?= $form->field($model, 'recommend')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'recommend')->radioList(['Нет', 'Да']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

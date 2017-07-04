@@ -16,6 +16,9 @@ return [
         'main' => [
             'class' => 'app\modules\main\Module',
         ],
+        'cabinet' => [
+            'class' => 'app\modules\cabinet\Module',
+        ],
     ],
     'components' => [
 
