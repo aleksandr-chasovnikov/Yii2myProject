@@ -3,10 +3,12 @@ namespace frontend\components;
 
 use Yii;
 use yii\base\Component;
+use yii\helpers\BaseFileHelper;
+use yii\helpers\Url;
+
 
 class Common extends Component
 {
-
     const EVENT_NOTIFY = 'notify_admin';
 
     public function sendMail($subject, $text, $emailTo='k241285k@yandex.ru')
@@ -77,4 +79,10 @@ class Common extends Component
     {
         return ($row['sold']) ? 'Sold' : 'New';
     }
+
+    public function getUrlAdvert($row){
+
+        return Url::to(['/main/main/view-advert', 'id' => $row['idadvert']]);
+    }
+
 }

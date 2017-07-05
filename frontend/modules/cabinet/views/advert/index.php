@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'idadvert',
             'price',
             'address',
-            'fk_agent',
+            'user.email', // user - имя связки (Advert::getUser), eamil - элемент
             'bedroom',
             'livingroom',
             'parking',
@@ -40,8 +40,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'sold',
             // 'type',
             // 'recommend',
-            'created_at',
-            'updated_at',
+            'created_at:date',
+            'updated_at:date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

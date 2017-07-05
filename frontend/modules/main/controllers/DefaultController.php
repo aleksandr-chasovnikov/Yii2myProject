@@ -17,12 +17,12 @@ class DefaultController extends Controller
         $query_advert = $query->from('advert')->orderBy('idadvert desc');
         $command = $query_advert->limit(5); // ограничение для слайдера
         $result_general = $command->all();
-        $count_general = $command->count();
+        $count_general = $command->count(); // кружочки индикации слайдера
 
         $featured = $query_advert->limit(15)->all();
-        $recommend_query  = $query_advert->where("recommend= 1")->limit(5);
+        $recommend_query  = $query_advert->where("recommend = 1")->limit(5);
         $recommend = $recommend_query->all();
-        $recommend_count = $recommend_query->count();
+        $recommend_count = $recommend_query->count(); // кружочки индикации слайдера
 
         return $this->render('index', compact(
                                 'result_general', 
@@ -34,8 +34,8 @@ class DefaultController extends Controller
                             ));
     }
 
-    public function actionService(){
-
+    public function actionService()
+    {
         $cache = \Yii::$app->cache;
 
         $cache->set("test",1);
@@ -44,8 +44,8 @@ class DefaultController extends Controller
 
     }
 
-    public function actionEvent(){
-
+    public function actionEvent()
+    {
         $component = \Yii::$app->common; //new Common();
         $component->on(Common::EVENT_NOTIFY,[$component,'notifyAdmin']);
         $component->sendMail("test@domain.com","Test","Test text");
@@ -53,8 +53,8 @@ class DefaultController extends Controller
 
     }
 
-    public function actionPath(){
-        // @yii
+    public function actionPath()
+    {        // @yii
         // @app
         //@runtime
         //@webroot
@@ -68,18 +68,16 @@ class DefaultController extends Controller
         print \Yii::getAlias('@test');
     }
 
-    public function actionCacheTest(){
-
+    public function actionCacheTest()
+    {
         $locator = \Yii::$app->locator;
         $locator->cache->set('test',1);
 
         print   $locator->cache->get('test');
-
-
     }
 
-    public function actionLoginData(){
-
+    public function actionLoginData()
+    {
         print \Yii::$app->user->identity->username;
     }
 }

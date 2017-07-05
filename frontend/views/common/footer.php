@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 
+
+if(Yii::$app->user->isGuest) {
+    echo \frontend\widgets\Login::widget();
+}
+
 ?>
 
 <div class="footer">
@@ -12,26 +17,24 @@ use yii\helpers\Html;
 
         <div class="row">
             <div class="col-lg-3 col-sm-3">
-                <h4>Information</h4>
+                <h4>Информация</h4>
                 <ul class="row">
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="about.html" >About</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="agents.html" >Agents</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="blog.html" >Blog</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="contact.html" >Contact</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="about.html" >О нас</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="agents.html" >Агенты</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="blog.html" >Блог</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="contact.html" >Контакты</a></li>
                 </ul>
             </div>
 
             <div class="col-lg-3 col-sm-3">
-                <h4>Newsletter</h4>
-                <p>Get notified about the latest properties in our marketplace.</p>
-                <?= Html::beginForm('', 'post', ['class' => 'form-inline']) ?>
-                    <?= Html::textInput('email', '', ['class' => 'form-control', 'placeholder' => 'Введите ваш email']) ?>
-                    <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
-                <?= Html::endForm() ?>
+                <h4>Новостная рассылка</h4>
+                <p>Получайте уведомления о последних новостях на нашем рынке.</p>
+                <?= \frontend\widgets\SubscribeWidget::widget() ?>
+              
             </div>
 
             <div class="col-lg-3 col-sm-3">
-                <h4>Follow us</h4>
+                <h4>Подписывайтесь на нас</h4>
                 <a href="#"><img src="/images/facebook.png"  alt="facebook"></a>
                 <a href="#"><img src="/images/twitter.png"  alt="twitter"></a>
                 <a href="#"><img src="/images/linkedin.png"  alt="linkedin"></a>
@@ -39,7 +42,7 @@ use yii\helpers\Html;
             </div>
 
             <div class="col-lg-3 col-sm-3">
-                <h4>Contact us</h4>
+                <h4>Наши контакты</h4>
                 <p><b>Bootstrap Realestate Inc.</b><br>
                     <span class="glyphicon glyphicon-map-marker"></span> 8290 Walk Street, Australia <br>
                     <span class="glyphicon glyphicon-envelope"></span> hello@bootstrapreal.com<br>

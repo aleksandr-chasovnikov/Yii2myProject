@@ -64,8 +64,10 @@ use yii\bootstrap\Nav;
         } else {
 
             $menuItems[] =  [
-                'label' => 'Мэнеджер объявлений', 
+                'label' => 'Управление объявлениями', 
                 'url' => '/cabinet/advert',
+            ];
+            $menuItems[] =  [
                 'label' => 'Выход',  
                 'url' => '/site/logout', 
                 'linkOptions' => ['data-method' => 'post']
@@ -74,11 +76,7 @@ use yii\bootstrap\Nav;
 
         echo Nav::widget([
             'options' => ['class' => 'pull-right'],
-            'items' => [
-                ['label' => 'Купить', 'url' => '#'],
-                ['label' => 'Продать', 'url' => '#'],
-                ['label' => 'Аренда', 'url' => '#'],
-            ],
+            'items' => $menuItems,          
         ]);
 
         ?>

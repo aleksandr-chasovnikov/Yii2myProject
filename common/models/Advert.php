@@ -93,7 +93,7 @@ class Advert extends \yii\db\ActiveRecord
     }
 
     public function getUser(){
-        return $this->hasOne(User::className(),['id' => 'fk_agent']);
+        return $this->hasOne( User::className(),['id' => 'fk_agent']);
     }
 
     /**
