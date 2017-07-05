@@ -34,10 +34,6 @@ class AdvertController extends AuthController
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', compact('searchModel', 'dataProvider'));
-        //     [
-        //     'searchModel' => $searchModel,
-        //     'dataProvider' => $dataProvider,
-        // ]);
     }
 
     /**
@@ -52,35 +48,44 @@ class AdvertController extends AuthController
         ]);
     }
 
-    public function actionFileUploadGeneral(){
-
-        if(Yii::$app->request->post()){
+    /**
+     * Загрузка главной картинки
+     */
+    public function actionFileUploadGeneral()
+    {
+        if(Yii::$app->request->post()) {
             
             $id = Yii::$app->request->post("advert_id"); // Из step2
 
             // Получить псевдоним
             $path = Yii::getAlias("@frontend/web/uploads/adverts/".$id."/general");
             // general - лицевые картинки
-            // Создаем директорию $id
+            // Создаем директорию $id, если её нет
             BaseFileHelper::createDirectory($path);
 
+            // Выборка из БД по id
             $model = Advert::findOne($id);
+            // В модели задан сценарий (берём только 'general_image')
             $model->scenario = 'step2';
 
+            // загрузка
             $file = UploadedFile::getInstance($model,'general_image');
+            // Даем имя лицевой картинке
             $name = 'general.'.$file->extension;
             $file->saveAs($path .DIRECTORY_SEPARATOR .$name);
 
             $image  = $path .DIRECTORY_SEPARATOR .$name;
+            // Имя нелицевой картинки
             $new_name = $path .DIRECTORY_SEPARATOR."small_".$name;
 
             $model->general_image = $name;
             $model->save();
 
-            $size = getimagesize($image);
+            $size = getimagesize($image); // php-функция
             $width = $size[0];
             $height = $size[1];
 
+            // Приводим нелицевую картинку к нужному виду и сохраняем
             Image::frame($image, 0, '666', 0)
                 ->crop(new Point(0, 0), new Box($width, $height))
                 ->resize(new Box(1000,644))
@@ -92,11 +97,18 @@ class AdvertController extends AuthController
     }
 
 
-    public function actionFileUploadImages(){
-        if(Yii::$app->request->post()){
+    /**
+     * Загрузка вторичной картинки
+     */
+    public function actionFileUploadImages()
+    {
+        if(Yii::$app->request->post()) {
+
             $id = Yii::$app->request->post("advert_id");
+
             $path = Yii::getAlias("@frontend/web/uploads/adverts/".$id);
             BaseFileHelper::createDirectory($path);
+
             $file = UploadedFile::getInstanceByName('images');
             $name = time().'.'.$file->extension;
             $file->saveAs($path .DIRECTORY_SEPARATOR .$name);
@@ -113,7 +125,7 @@ class AdvertController extends AuthController
                 ->resize(new Box(1000,644))
                 ->save($new_name, ['quality' => 100]);
 
-            sleep(1);
+            sleep(1); // Небольшая задерка воизбежание ошибок
             return true;
 
         }
