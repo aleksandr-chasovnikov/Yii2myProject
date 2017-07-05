@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "advert".
@@ -10,7 +11,7 @@ use Yii;
  * @property integer $idadvert
  * @property integer $price
  * @property string $address
- * @property integer $fk_agent_detail
+ * @property integer $fk_agent
  * @property integer $bedroom
  * @property integer $livingroom
  * @property integer $parking
@@ -36,18 +37,32 @@ class Advert extends \yii\db\ActiveRecord
     }
 
     /**
+     * По умолчанию заполняет поля created_at, updated_at
+     */
+    public function behaviors()
+    {
+        return [TimestampBehavior::className()];
+    }
+
+    public function scenarios(){
+        $scenarios = parent::scenarios();
+        $scenarios['step2'] = ['general_image'];
+
+        return $scenarios;
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['price', 'fk_agent_detail', 'bedroom', 'livingroom', 'parking', 'kitchen', 'hot', 'sold', 'recommend', 'created_at', 'updated_at'], 'integer'],
+            [['price'], 'required'],
+            [['price', 'bedroom', 'livingroom', 'parking', 'kitchen', 'hot', 'sold', 'type', 'recommend'], 'integer'],
             [['description'], 'string'],
-            [['created_at', 'updated_at'], 'required'],
             [['address'], 'string', 'max' => 255],
-            [['general_image'], 'string', 'max' => 200],
-            [['location'], 'string', 'max' => 30],
-            [['type'], 'string', 'max' => 50]
+            [['location'], 'string', 'max' => 50],
+            //['general_image', 'file', 'extensions' => ['jpg','png','gif']]
         ];
     }
 
@@ -60,7 +75,7 @@ class Advert extends \yii\db\ActiveRecord
             'idadvert' => 'Idadvert',
             'price' => 'Price',
             'address' => 'Address',
-            'fk_agent_detail' => 'Fk Agent Detail',
+            'fk_agent' => 'Fk Agent Detail',
             'bedroom' => 'Bedroom',
             'livingroom' => 'Livingroom',
             'parking' => 'Parking',
@@ -75,6 +90,25 @@ class Advert extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::className(),['id' => 'fk_agent']);
+    }
+
+    /**
+     * После валидации запоминаем id
+     */
+    public function afterValidate()
+    {
+        $this->fk_agent = Yii::$app->user->identity->id;
+    }
+    /**
+     * После сохранения в БД поместить id в сессию
+     */
+    public function afterSave()
+    {
+        Yii::$app->locator->cache->set('id', $this->idadvert);
     }
 
     /**

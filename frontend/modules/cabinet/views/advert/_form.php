@@ -16,8 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fk_agent_detail')->textInput() ?>
-
     <?= $form->field($model, 'bedroom')->textInput() ?>
 
     <?= $form->field($model, 'livingroom')->textInput() ?>
@@ -25,8 +23,6 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'parking')->textInput() ?>
 
     <?= $form->field($model, 'kitchen')->textInput() ?>
-
-    <?= $form->field($model, 'general_image')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
