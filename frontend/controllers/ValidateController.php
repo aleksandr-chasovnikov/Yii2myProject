@@ -12,7 +12,9 @@ use yii\widgets\ActiveForm;
 
 class ValidateController extends Controller
 {
-
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -26,7 +28,9 @@ class ValidateController extends Controller
         ];
     }
 
-
+    /**
+     * @inheritdoc
+     */
     public function actionIndex()
     {
 
@@ -39,9 +43,11 @@ class ValidateController extends Controller
             return ActiveForm::validate($model);
         }
 
-
     }
 
+    /**
+     * @inheritdoc
+     */
     public function actionSubscribe()
     {
 

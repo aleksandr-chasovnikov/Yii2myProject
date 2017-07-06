@@ -18,8 +18,14 @@ use dosamigos\google\maps\overlays\Marker;
 
 class MainController extends \yii\web\Controller
 {
+    /**
+     * Подключаемый шаблон представления
+     */
     public $layout = "inner";
 
+    /**
+     * Подключаемые классы-экшны
+     */
     public function actions()
     {
         return [
@@ -29,10 +35,17 @@ class MainController extends \yii\web\Controller
             ],
             'test' => [
                 'class' => 'frontend\actions\TestAction',
+            ],            
+            'page' => [
+                'class' => 'yii\web\ViewAction',
+                'layout' => 'inner',
             ]
         ];
     }
 
+    /**
+     * Подключаемые классы-поведения
+     */
     public function behaviors(){
         return [
             [
@@ -42,7 +55,17 @@ class MainController extends \yii\web\Controller
         ];
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
 
+    /**
+     * Поиск на странице
+     */
     public function actionFind($propert='',$price='',$apartment = ''){
 
         $this->layout = 'sell';
@@ -74,13 +97,11 @@ class MainController extends \yii\web\Controller
 
     }
 
-    public function actionIndex()
+    /**
+     * Регистрация пользователей
+     */
+    public function actionRegister()
     {
-        return $this->render('index');
-    }
-
-    public function actionRegister(){
-
         $model = new SignupForm();
 
         if(\Yii::$app->request->isAjax && \Yii::$app->request->isPost){
@@ -98,7 +119,11 @@ class MainController extends \yii\web\Controller
         return $this->render("register",['model' => $model]);
     }
 
-    public function actionLogin(){
+    /**
+     * Авторизация
+     */
+    public function actionLogin()
+    {
         $model = new LoginForm;
 
         if($model->load(\Yii::$app->request->post()) && $model->login()){
@@ -109,14 +134,20 @@ class MainController extends \yii\web\Controller
         return $this->render("login", ['model' => $model]);
     }
 
-    public function actionLogout(){
-
+    /**
+     * Logout
+     */
+    public function actionLogout()
+    {
         \Yii::$app->user->logout();
         return $this->goHome();
     }
 
-    public function actionContact(){
-
+    /**
+     * Контакты
+     */
+    public function actionContact()
+    {
         $model = new ContactForm();
         if($model->load(\Yii::$app->request->post()) && $model->validate()){
             $body = " <div>Body: <b> ".$model->body." </b></div>";
@@ -131,8 +162,11 @@ class MainController extends \yii\web\Controller
         return $this->render("contact", ['model' => $model]);
     }
 
-
-    public function actionViewAdvert($id){
+    /**
+     * Страница одного объявления
+     */
+    public function actionViewAdvert($id)
+    {
         $model = Advert::findOne($id);
 
         $data = ['name', 'email', 'text'];
@@ -163,21 +197,22 @@ class MainController extends \yii\web\Controller
 
         }
 
-        // $coords = str_replace(['(',')'],'',$model->location);
-        // $coords = explode(',',$coords);
+        // Получ. координаты в виде массива
+        $coords = str_replace(['(',')'],'',$model->location);
+        $coords = explode(',',$coords);
 
-        // $coord = new LatLng(['lat' => $coords[0], 'lng' => $coords[1]]);
-        // $map = new Map([
-        //     'center' => $coord,
-        //     'zoom' => 20,
-        // ]);
+        $coord = new LatLng(['lat' => $coords[0], 'lng' => $coords[1]]);
+        $map = new Map([
+            'center' => $coord,
+            'zoom' => 20,
+        ]);
 
-        // $marker = new Marker([
-        //     'position' => $coord,
-        //     'title' => Common::getTitleAdvert($model),
-        // ]);
+        $marker = new Marker([
+            'position' => $coord,
+            'title' => Common::getTitleAdvert($model),
+        ]);
 
-        // $map->addOverlay($marker);
+        $map->addOverlay($marker);
 
 
         return $this->render('view_advert',[
@@ -186,7 +221,7 @@ class MainController extends \yii\web\Controller
             'user' => $user,
             'images' =>$images,
             'current_user' => $current_user,
-            // 'map' => $map
+            'map' => $map
         ]);
 
     }

@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use frontend\components\Common;
 ?>
 
 <div id="slider" class="sl-slider-wrapper">
@@ -11,11 +12,11 @@ use yii\helpers\Html;
         ?>
         <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
             <div class="sl-slide-inner">
-                <div class="bg-img" style="background-image: url('<?=\frontend\components\Common::getImageAdvert($row)[0] ?>')")"></div>
-                <h2><a href="#"><?=\frontend\components\Common::getTitleAdvert($row) ?></a></h2>
+                <div class="bg-img" style="background-image: url('<?= Common::getImageAdvert($row)[0] ?>')")"></div>
+                <h2><a href="<?= Common::getUrlAdvert($row) ?>"><?= Common::getTitleAdvert($row) ?></a></h2>
                 <blockquote>
                     <p class="location"><span class="glyphicon glyphicon-map-marker"></span> <?=$row['address'] ?></p>
-                    <p><?=\frontend\components\Common::substr($row['description']) ?></p>
+                    <p><?= Common::substr($row['description']) ?></p>
                     <cite>$ <?=$row['price'] ?></cite>
                 </blockquote>
             </div>
@@ -112,13 +113,13 @@ use yii\helpers\Html;
             <?php foreach($featured as $row): ?>
 
                 <div class="properties">
-                    <div class="image-holder"><img src="<?=\frontend\components\Common::getImageAdvert($row)[0] ?>"  class="img-responsive" alt="properties"/>
-                        <div class="status <?=($row['sold']) ? 'sold' : 'new' ?>"><?=\frontend\components\Common::getType($row) ?></div>
+                    <div class="image-holder"><img src="<?= Common::getImageAdvert($row)[0] ?>"  class="img-responsive" alt="properties"/>
+                        <div class="status <?=($row['sold']) ? 'sold' : 'new' ?>"><?= Common::getType($row) ?></div>
                     </div>
-                    <h4><a href="<?=\frontend\components\Common::getUrlAdvert($row) ?>" ><?=\frontend\components\Common::getTitleAdvert($row) ?></a></h4>
+                    <h4><a href="<?= Common::getUrlAdvert($row) ?>" ><?= Common::getTitleAdvert($row) ?></a></h4>
                     <p class="price">Price: $<?=$row['price'] ?></p>
                     <div class="listing-detail"><span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room"><?=$row['bedroom'] ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room"><?=$row['livingroom'] ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking"><?=$row['parking'] ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen"><?=$row['kitchen'] ?></span> </div>
-                    <a class="btn btn-primary" href="<?=\frontend\components\Common::getUrlAdvert($row) ?>" >View Details</a>
+                    <a class="btn btn-primary" href="<?= Common::getUrlAdvert($row) ?>" >View Details</a>
                 </div>
 
             <?php endforeach ?>
@@ -161,11 +162,11 @@ use yii\helpers\Html;
                             ?>
                             <div class="item <?=($i == 0) ? 'active' : '' ?>">
                                 <div class="row">
-                                    <div class="col-lg-4"><img src="<?=\frontend\components\Common::getImageAdvert($rec)[0] ?>"  class="img-responsive" alt="properties"/></div>
+                                    <div class="col-lg-4"><img src="<?= Common::getImageAdvert($rec)[0] ?>"  class="img-responsive" alt="properties"/></div>
                                     <div class="col-lg-8">
-                                        <h5><a href="<?=\frontend\components\Common::getUrlAdvert($rec) ?>" ><?=\frontend\components\Common::getTitleAdvert($rec) ?></a></h5>
+                                        <h5><a href="<?= Common::getUrlAdvert($rec) ?>" ><?= Common::getTitleAdvert($rec) ?></a></h5>
                                         <p class="price">$<?=$rec['price'] ?></p>
-                                        <a href="<?=\frontend\components\Common::getUrlAdvert($rec) ?>"  class="more">More Detail</a> </div>
+                                        <a href="<?= Common::getUrlAdvert($rec) ?>"  class="more">More Detail</a> </div>
                                 </div>
                             </div>
 

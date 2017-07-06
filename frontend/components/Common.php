@@ -9,8 +9,14 @@ use yii\helpers\Url;
 
 class Common extends Component
 {
+    /**
+     * @inheritdoc
+     */
     const EVENT_NOTIFY = 'notify_admin';
 
+    /**
+     * @inheritdoc
+     */
     public function sendMail($subject, $text, $emailTo='k241285k@yandex.ru')
     {
         if (Yii::$app->mail->compose()
@@ -27,6 +33,9 @@ class Common extends Component
         return false;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function notifyAdmin($event)
     {
         print "Notify Admin";
@@ -69,17 +78,25 @@ class Common extends Component
         return $image;
     }
 
+    /**
+     * @inheritdoc
+     */
     public static function substr($text,$start=0,$end=50)
     {
         return mb_substr($text,$start,$end);
     }
-
-
+    
+    /**
+     * @inheritdoc
+     */
     public static function getType($row)
     {
         return ($row['sold']) ? 'Sold' : 'New';
     }
-
+    
+    /**
+     * @inheritdoc
+     */
     public function getUrlAdvert($row){
 
         return Url::to(['/main/main/view-advert', 'id' => $row['idadvert']]);

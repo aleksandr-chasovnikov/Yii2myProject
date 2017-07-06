@@ -53,12 +53,13 @@
                 <div class="spacer"><h4><span class="glyphicon glyphicon-th-list"></span> Properties Detail</h4>
                     <p> <?=$model->description ?></p>
                 </div>
-                <div><h4><span class="glyphicon glyphicon-map-marker"></span> Location</h4>
+                <!-- <div><h4><span class="glyphicon glyphicon-map-marker"></span> Location</h4>
                     <div class="well">
-                        <? //echo $map->display(); ?>
+
+                        <?php  //echo $map->display() ?>
 
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <div class="col-lg-4">

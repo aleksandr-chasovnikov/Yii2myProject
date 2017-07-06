@@ -8,6 +8,9 @@ use yii\db\Query;
 
 class DefaultController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function actionIndex()
     {
         $this->layout = "bootstrap";
@@ -34,6 +37,9 @@ class DefaultController extends Controller
                             ));
     }
 
+    /**
+     * Создание кэша
+     */
     public function actionService()
     {
         $cache = \Yii::$app->cache;
@@ -44,6 +50,9 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * События
+     */
     public function actionEvent()
     {
         $component = \Yii::$app->common; //new Common();
@@ -53,6 +62,9 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * @inheritdoc
+     */
     public function actionPath()
     {        // @yii
         // @app
@@ -68,6 +80,9 @@ class DefaultController extends Controller
         print \Yii::getAlias('@test');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function actionCacheTest()
     {
         $locator = \Yii::$app->locator;
@@ -76,6 +91,9 @@ class DefaultController extends Controller
         print   $locator->cache->get('test');
     }
 
+    /**
+     * @inheritdoc
+     */
     public function actionLoginData()
     {
         print \Yii::$app->user->identity->username;

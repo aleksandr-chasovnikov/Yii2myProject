@@ -167,6 +167,9 @@ class AdvertController extends AuthController
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function actionStep2()
     {
         $id = Yii::$app->locator->cache->get('id');
@@ -203,7 +206,6 @@ class AdvertController extends AuthController
             }
         }
         catch(\yii\base\Exception $e){}
-
 
         return $this->render("step2", compact('model', 'image', 'images_add'));
     }
