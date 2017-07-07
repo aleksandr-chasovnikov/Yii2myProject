@@ -6,6 +6,8 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
+\Yii::setAlias('theme_view', '@frontend/themes/advert/views');
+
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
@@ -38,6 +40,13 @@ return [
         //     'useFileTransport' => false,
         //     ],
     
+        'view' => [
+            'theme' => [
+                'class' => 'frontend\themes\advert\Theme',
+                'basePath' => '@app/',
+                'baseUrl'  => '@web/',
+            ],
+        ],
         'mail' => [
             'class'            => 'zyx\phpmailer\Mailer',
             'viewPath'         => '@common/mail',

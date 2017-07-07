@@ -28,7 +28,7 @@ class AuthController extends Controller
     public function behaviors()
     {
         $behaviors = [
-            'access' => [
+            'access' => [  // Авторизация
                 'class' => AccessControl::className(),
                 'rules' => [
                     [

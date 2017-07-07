@@ -36,7 +36,7 @@ class MainController extends \yii\web\Controller
             'test' => [
                 'class' => 'frontend\actions\TestAction',
             ],            
-            'page' => [
+            'page' => [ // Для статичных страниц (Контакты, О нас)
                 'class' => 'yii\web\ViewAction',
                 'layout' => 'inner',
             ]

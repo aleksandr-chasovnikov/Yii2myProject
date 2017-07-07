@@ -53,7 +53,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * Изменяет пароль
      */
     public function actionChangePassword(){
 

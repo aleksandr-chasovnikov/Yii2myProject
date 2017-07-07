@@ -27,9 +27,9 @@ use yii\bootstrap\Nav;
                 <?= Nav::widget([
                         'options' => ['class' => 'navbar-nav navbar-right'],
                         'items' => [
-                            ['label' => 'Главная', 'url' => '#'],
-                            ['label' => 'О проекте', 'url' => '#'],
-                            ['label' => 'Контакты', 'url' => '#'],
+                            ['label' => 'Главная', 'url' => '/'],
+                            ['label' => 'О проекте', 'url' => ['/main/main/page', 'view' => 'about']],
+                            ['label' => 'Контакты', 'url' => ['/main/main/page', 'view' => 'contact']],
                         ],
                     ]) ?>
 
@@ -67,6 +67,8 @@ use yii\bootstrap\Nav;
                 'label' => 'Управление объявлениями', 
                 'url' => '/cabinet/advert',
             ];
+            $menuItems[] =  ['label' => 'Settings', 'url' => ['/cabinet/default/settings']];
+            $menuItems[] =  ['label' => 'Change Password', 'url' => ['/cabinet/default/change-password']];
             $menuItems[] =  [
                 'label' => 'Выход',  
                 'url' => '/site/logout', 

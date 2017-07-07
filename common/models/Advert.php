@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use frontend\components\Common;
 
 /**
  * This is the model class for table "advert".
@@ -92,8 +93,20 @@ class Advert extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getUser(){
+    /**
+     * Получить пользователя
+     */
+    public function getUser()
+    {
         return $this->hasOne( User::className(),['id' => 'fk_agent']);
+    }
+
+    /**
+     * Получить заголовок
+     */
+    public function getTitle()
+    {
+        return Common::getTitleAdvert($this);
     }
 
     /**
