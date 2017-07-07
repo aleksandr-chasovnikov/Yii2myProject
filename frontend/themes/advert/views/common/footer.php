@@ -1,4 +1,8 @@
 <?
+
+use yii\bootstrap\Nav;
+use yii\helpers\Url;
+
 if(Yii::$app->user->isGuest) {
     echo \frontend\widgets\Login::widget();
 }
@@ -12,12 +16,12 @@ if(Yii::$app->user->isGuest) {
 
         <div class="row">
             <div class="col-lg-3 col-sm-3">
-                <h4>Information</h4>
+                <h4>Информация</h4>
+
                 <ul class="row">
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="about.html" >About</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="agents.html" >Agents</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="blog.html" >Blog</a></li>
-                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="contact.html" >Contact</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="<?= Url::to('pages/about') ?>" >Главная</a></li>         
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="blog.html" >О проекте</a></li>
+                    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="contact.html" >Контакты</a></li>
                 </ul>
             </div>
 

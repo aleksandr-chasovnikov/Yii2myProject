@@ -21,11 +21,11 @@ use yii\bootstrap\Nav;
 
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
-                <?
+                <?php
                 $menuItems = [
-                    ['label' => 'Home', 'url' => '/'],
-                    ['label' => 'About', 'url' => ['/main/main/page', 'view' => 'about']],
-                    ['label' => 'Contact', 'url' => ['/main/main/page', 'view' => 'contact']],
+                    ['label' => 'Главная', 'url' => '/',],
+                    ['label' => 'О проекте', 'url' => ['/main/main/page', 'view' => 'about']],
+                    ['label' => 'Контакты', 'url' => ['/main/main/page', 'view' => 'contact']],
                 ];
                 echo Nav::widget([
                     'options' => ['class' => 'navbar-nav navbar-right'],
@@ -41,26 +41,22 @@ use yii\bootstrap\Nav;
 </div>
 <!-- #Header Starts -->
 
-
-
-
-
 <div class="container">
 
     <!-- Header Starts -->
     <div class="header">
         <a href="/" ><img src="/images/logo.png"  alt="Realestate"></a>
-        <?
+        <?php
         $menuItems = [];
-        $guest = Yii::$app->user->isGuest;
-        if($guest) {
-            $menuItems[] =  ['label' => 'Login', 'url' => '#', 'linkOptions' => ['data-target' => '#loginpop', 'data-toggle' => "modal"]];
+
+        if(Yii::$app->user->isGuest) {
+            $menuItems[] =  ['label' => 'Вход', 'url' => '#', 'linkOptions' => ['data-target' => '#loginpop', 'data-toggle' => "modal"]];
         }
         else{
-            $menuItems[] =  ['label' => 'Manager adverts', 'url' => ['/cabinet/advert']];
-            $menuItems[] =  ['label' => 'Settings', 'url' => ['/cabinet/default/settings']];
-            $menuItems[] =  ['label' => 'Change Password', 'url' => ['/cabinet/default/change-password']];
-            $menuItems[] = ['label' => 'Logout',  'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
+            $menuItems[] =  ['label' => 'Мои объявления', 'url' => ['/cabinet/advert']];
+            $menuItems[] =  ['label' => 'Настройки', 'url' => ['/cabinet/default/settings']];
+            $menuItems[] =  ['label' => 'Изменить пароль', 'url' => ['/cabinet/default/change-password']];
+            $menuItems[] = ['label' => 'Выход',  'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
         }
         echo Nav::widget([
             'options' => ['class' => 'pull-right'],

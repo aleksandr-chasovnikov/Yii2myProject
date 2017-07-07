@@ -13,9 +13,9 @@ return [
         //     'storage' => Yii::$app->get('storage'),
         // ]); },
     
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
+        // 'cache' => [
+        //     'class' => 'yii\caching\FileCache',
+        // ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@common/mail',
