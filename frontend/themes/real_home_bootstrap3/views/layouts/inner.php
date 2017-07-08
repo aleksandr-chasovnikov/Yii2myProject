@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 
-\frontend\assets\MainAsset::register($this);
+\frontend\assets\RealHomeThemeAsset::register($this);
 ?>
 <?
   $this->beginPage();
@@ -44,7 +44,7 @@ endif;
 
 <div class="inside-banner">
     <div class="container">
-        <span class="pull-right"><a href="#">Home</a> / <?=$this->title ?></span>
+        <!-- <span class="pull-right"><a href="#">Home</a> / <?=$this->title ?></span> -->
         <h2><?=$this->title ?></h2>
     </div>
 </div>

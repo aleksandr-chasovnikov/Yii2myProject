@@ -46,7 +46,7 @@ class Common extends Component
      */
     public static function getTitleAdvert($data)
     {
-        return $data['bedroom'].' Bed Rooms and '.$data['kitchen'].' Kitchen Room Aparment on Sale';
+        return $data['bedroom'];
     }
 
     /**

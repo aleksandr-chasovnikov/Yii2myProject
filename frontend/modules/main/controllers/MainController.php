@@ -17,13 +17,8 @@ use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\Map;
 use dosamigos\google\maps\overlays\Marker;
 
-class MainController extends \yii\web\Controller
+class MainController extends \app\controllers\BaseController
 {
-    /**
-     * Подключаемый шаблон представления
-     */
-    public $layout = "inner";
-
     /**
      * Подключаемые классы-экшны
      */

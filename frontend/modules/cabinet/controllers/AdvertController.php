@@ -2,7 +2,6 @@
 
 namespace app\modules\cabinet\controllers;
 
-use common\controllers\AuthController;
 use Yii;
 use common\models\Advert;
 use common\models\Search\AdvertSearch;
@@ -19,11 +18,8 @@ use Imagine\Image\Box;
 /**
  * AdvertController implements the CRUD actions for Advert model.
  */
-class AdvertController extends AuthController
+class AdvertController extends \common\controllers\AuthController
 {
-
-    public $layout = "inner";
-
     /**
      * Lists all Advert models.
      * @return mixed
@@ -145,7 +141,7 @@ class AdvertController extends AuthController
             return $this->redirect(['step2']);
 
         } else {
-            return $this->render('create', compact('model'));
+            return $this->render('update', compact('model'));
         }
     }
 

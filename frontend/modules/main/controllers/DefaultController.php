@@ -3,18 +3,15 @@
 namespace app\modules\main\controllers;
 
 use frontend\components\Common;
-use yii\web\Controller;
 use yii\db\Query;
 
-class DefaultController extends Controller
+class DefaultController extends \app\controllers\BaseController
 {
     /**
-     * @inheritdoc
+     * Главная страница
      */
     public function actionIndex()
     {
-        $this->layout = "bootstrap";
-
         $query = new Query();
 
         $query_advert = $query->from('advert')->orderBy('idadvert desc');

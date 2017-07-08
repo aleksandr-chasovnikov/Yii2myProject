@@ -1,7 +1,7 @@
 <?
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
-\frontend\assets\MainAsset::register($this);
+\frontend\assets\RealHomeThemeAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

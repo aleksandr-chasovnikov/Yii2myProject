@@ -11,13 +11,8 @@ use Imagine\Image\Box;
 use Imagine\Image\Point;
 use yii\imagine\Image;
 
-class DefaultController extends Controller
+class DefaultController extends \app\controllers\BaseController
 {
-	/**
-	 * Подключаем шаблон представления
-	 */
-    public $layout = "inner";
-
     /**
      * @inheritdoc
      */

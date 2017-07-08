@@ -6,7 +6,8 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 
-\Yii::setAlias('theme_view', '@frontend/themes/advert/views');
+// Используется в Module.php
+// \Yii::setAlias('theme_view', '@frontend/themes/realestate_bootstrap3/views');
 
 return [
     'id' => 'app-frontend',
@@ -42,7 +43,7 @@ return [
     
         'view' => [
             'theme' => [
-                'class' => 'frontend\themes\advert\Theme',
+                'class' => 'frontend\themes\real_home_bootstrap3\Theme',
                 'basePath' => '@app/',
                 'baseUrl'  => '@web/',
             ],
