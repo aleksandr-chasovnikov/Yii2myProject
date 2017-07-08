@@ -29,8 +29,10 @@ class DefaultController extends Controller
     /**
      * Загрузка аватарки
      */
-    public function uploadAvatar(){
-        if(Yii::$app->request->isPost){
+    public function uploadAvatar()
+    {
+        if(Yii::$app->request->isPost) {
+
             $id = Yii::$app->user->id;
             $path = Yii::getAlias("@frontend/web/uploads/users");
             $file = UploadedFile::getInstanceByName('avatar');
@@ -55,11 +57,11 @@ class DefaultController extends Controller
     /**
      * Изменяет пароль
      */
-    public function actionChangePassword(){
-
+    public function actionChangePassword()
+    {
         $model = new ChangePasswordForm();
 
-        if($model->load(\Yii::$app->request->post()) && $model->changepassword()){
+        if($model->load(\Yii::$app->request->post()) && $model->changepassword()) {
 
             $this->refresh();
 
@@ -71,8 +73,8 @@ class DefaultController extends Controller
     /**
      * @inheritdoc
      */
-    public function actionSettings(){
-
+    public function actionSettings()
+    {
         $model = User::findOne(\Yii::$app->user->id);
         $model->scenario = 'setting';
 

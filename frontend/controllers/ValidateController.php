@@ -19,7 +19,7 @@ class ValidateController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::className(), //фильтр действий по методам HTTP
                 'actions' => [
                     'index' => ['get', 'post'],
                     'subscribe' => ['get', 'post'],
@@ -46,7 +46,7 @@ class ValidateController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * Регистрация подписчиков
      */
     public function actionSubscribe()
     {

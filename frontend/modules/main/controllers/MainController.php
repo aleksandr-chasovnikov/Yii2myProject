@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\main\controllers;
 
+use Yii;
 use common\models\Advert;
 use common\models\LoginForm;
 use frontend\components\Common;
@@ -33,9 +34,9 @@ class MainController extends \yii\web\Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
-            'test' => [
-                'class' => 'frontend\actions\TestAction',
-            ],            
+            // 'test' => [
+            //     'class' => 'frontend\actions\TestAction',
+            // ],            
             'page' => [ // Для статичных страниц (Контакты, О нас)
                 'class' => 'yii\web\ViewAction',
                 'layout' => 'inner',
@@ -58,10 +59,10 @@ class MainController extends \yii\web\Controller
     /**
      * @inheritdoc
      */
-    public function actionIndex()
-    {
-        // return $this->render('index');
-    }
+    // public function actionIndex()
+    // {
+    //     // return $this->render('index');
+    // }
 
     /**
      * Поиск на странице
@@ -87,12 +88,14 @@ class MainController extends \yii\web\Controller
         }
 
         $countQuery = clone $query;
+
         $pages = new Pagination(['totalCount' => $countQuery->count()]);
         $pages->setPageSize(10);
 
         $model = $query->offset($pages->offset)->limit($pages->limit)->all();
 
-        $request = \Yii::$app->request;
+        $request = Yii::$app->request;
+
         return $this->render("find", ['model' => $model, 'pages' => $pages, 'request' => $request]);
 
     }
@@ -104,19 +107,22 @@ class MainController extends \yii\web\Controller
     {
         $model = new SignupForm();
 
-        if(\Yii::$app->request->isAjax && \Yii::$app->request->isPost){
-            if($model->load(\Yii::$app->request->post())) {
-                \Yii::$app->response->format = Response::FORMAT_JSON;
+        if( Yii::$app->request->isAjax && Yii::$app->request->isPost) {
+
+            if( $model->load( Yii::$app->request->post() )) {
+
+                Yii::$app->response->format = Response::FORMAT_JSON;
+
                 return ActiveForm::validate($model);
             }
         }
 
-        if($model->load(\Yii::$app->request->post()) && $model->signup()){
+        if( $model->load( Yii::$app->request->post() ) && $model->signup() ) {
 
-            \Yii::$app->session->setFlash('success', 'Register Success');
+            Yii::$app->session->setFlash('success', 'Регистрация прошла успешно.');
         }
 
-        return $this->render("register",['model' => $model]);
+        return $this->render("register", compact('model'));
     }
 
     /**
@@ -126,12 +132,12 @@ class MainController extends \yii\web\Controller
     {
         $model = new LoginForm;
 
-        if($model->load(\Yii::$app->request->post()) && $model->login()){
+        if($model->load(Yii::$app->request->post()) && $model->login()) {
 
-            $this->goBack();
+           return $this->goHome();
         }
 
-        return $this->render("login", ['model' => $model]);
+        return $this->render("login", compact('model'));
     }
 
     /**
@@ -139,7 +145,7 @@ class MainController extends \yii\web\Controller
      */
     public function actionLogout()
     {
-        \Yii::$app->user->logout();
+        Yii::$app->user->logout();
         return $this->goHome();
     }
 
@@ -149,17 +155,17 @@ class MainController extends \yii\web\Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        if($model->load(\Yii::$app->request->post()) && $model->validate()){
+        if($model->load(Yii::$app->request->post()) && $model->validate()){
             $body = " <div>Body: <b> ".$model->body." </b></div>";
             $body .= " <div>Email: <b> ".$model->email." </b></div>";
 
-            \Yii::$app->common->sendMail($model->subject,$body);
+            Yii::$app->common->sendMail($model->subject,$body);
 
             print "Send success";
             die;
         }
 
-        return $this->render("contact", ['model' => $model]);
+        return $this->render("contact", compact('model'));
     }
 
     /**
@@ -177,10 +183,10 @@ class MainController extends \yii\web\Controller
         $model_feedback->addRule('email','email');
 
 
-        if(\Yii::$app->request->isPost) {
-            if ($model_feedback->load(\Yii::$app->request->post()) && $model_feedback->validate()){
+        if(Yii::$app->request->isPost) {
+            if ($model_feedback->load(Yii::$app->request->post()) && $model_feedback->validate()){
 
-                \Yii::$app->common->sendMail('Subject Advert',$model_feedback->text);
+                Yii::$app->common->sendMail('Subject Advert',$model_feedback->text);
             }
 
         }
@@ -190,10 +196,10 @@ class MainController extends \yii\web\Controller
 
         $current_user = ['email' => '', 'username' => ''];
 
-        if(!\Yii::$app->user->isGuest){
+        if(!Yii::$app->user->isGuest){
 
-            $current_user['email'] = \Yii::$app->user->identity->email;
-            $current_user['username'] = \Yii::$app->user->identity->username;
+            $current_user['email'] = Yii::$app->user->identity->email;
+            $current_user['username'] = Yii::$app->user->identity->username;
 
         }
 
@@ -215,14 +221,14 @@ class MainController extends \yii\web\Controller
         $map->addOverlay($marker);
 
 
-        return $this->render('view_advert',[
-            'model' => $model,
-            'model_feedback' => $model_feedback,
-            'user' => $user,
-            'images' =>$images,
-            'current_user' => $current_user,
-            'map' => $map
-        ]);
+        return $this->render('view_advert', compact(
+                                'model', 
+                                'model_feedback', 
+                                'user', 
+                                'images', 
+                                'current_user', 
+                                'map'
+                            ));
 
     }
 

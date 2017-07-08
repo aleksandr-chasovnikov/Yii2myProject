@@ -40,15 +40,15 @@ class DefaultController extends Controller
     /**
      * Создание кэша
      */
-    public function actionService()
-    {
-        $cache = \Yii::$app->cache;
+    // public function actionService()
+    // {
+    //     $cache = \Yii::$app->cache;
 
-        $cache->set("test",1);
+    //     $cache->set("test",1);
 
-        print $cache->get("test");
+    //     print $cache->get("test");
 
-    }
+    // }
 
     /**
      * События

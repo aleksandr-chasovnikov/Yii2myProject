@@ -33,7 +33,7 @@ class SignupForm extends Model
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Этот email уже существует.'],
 
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 6, 'max' => 30],
             ['repassword', 'compare', 'compareAttribute' => 'password'],
         ];
     }
