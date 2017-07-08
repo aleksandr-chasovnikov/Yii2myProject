@@ -1,6 +1,5 @@
-<?
+<?php
 namespace frontend\assets;
-
 
 use yii\web\AssetBundle;
 use yii\web\View;
@@ -8,25 +7,26 @@ use yii\web\View;
 class RealHomeThemeAsset extends  AssetBundle
 {
     public $sourcePath = '@frontend/themes/real_home_bootstrap3/source';
+    // public $basePath = '@webroot';
     // public $baseUrl = '@web';
 
     public $css = [
-        'source/ccs/bootstrap.css',
-        'source/ccs/default.css',
-        'source/ccs/flexslider.css',
-        'source/ccs/popuo-box.css',
-        'source/ccs/style.css',
-        'source/ccs/styles.css',
+        // 'ccs/bootstrap.css',
+        // 'ccs/styles.css',
+        // 'ccs/style.css',
+        'ccs/default.css',
+        'ccs/flexslider.css',
+        'ccs/popuo-box.css',
     ];
 
     public $js = [
-        'source/js/easyResponsiveTabs.js',
-        'source/js/jquery.flexisel.js',
-        'source/js/jquery.flexslider.js',
-        'source/js/jquery.magnific-popup.js',
-        'source/js/jquery.min.js',
-        'source/js/responsiveslides.min.js',
-        'source/js/scripts.js'
+        // 'js/jquery.min.js',
+        // 'js/scripts.js',
+        'js/easyResponsiveTabs.js',
+        'js/jquery.flexisel.js',
+        'js/jquery.flexslider.js',
+        'js/jquery.magnific-popup.js',
+        // 'js/responsiveslides.min.js',
     ];
 
     public $depends = [
@@ -36,7 +36,7 @@ class RealHomeThemeAsset extends  AssetBundle
     ];
 
     public $jsOptions = [
-      'position' =>  View::POS_END,
+      'position' =>  View::POS_HEAD,
     ];
 
 

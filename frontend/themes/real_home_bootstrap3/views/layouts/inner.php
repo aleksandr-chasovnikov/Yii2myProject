@@ -10,6 +10,7 @@ use yii\bootstrap\Nav;
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title><?=$this->title ?> </title>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <?= Html::csrfMetaTags() ?>

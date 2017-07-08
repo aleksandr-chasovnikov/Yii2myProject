@@ -23,12 +23,11 @@ class DefaultController extends \app\controllers\BaseController
         $recommend_query  = $query_advert->where("recommend = 1")->limit(5);
         $recommend = $recommend_query->all();
         $recommend_count = $recommend_query->count(); // кружочки индикации слайдера
-
+        
         return $this->render('index', compact(
                                 'result_general', 
                                 'count_general', 
                                 'featured', 
-                                'recommend', 
                                 'recommend', 
                                 'recommend_count'
                             ));
