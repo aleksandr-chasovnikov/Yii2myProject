@@ -10,7 +10,8 @@ $params = array_merge(
 // \Yii::setAlias('theme_view', '@frontend/themes/realestate_bootstrap3/views');
 
 return [
-    'id' => 'app-frontend',
+    'id' => 'app-frontend',    
+    'language'=>'ru-RU',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -43,7 +44,7 @@ return [
     
         'view' => [
             'theme' => [
-                'class' => 'frontend\themes\real_home_bootstrap3\Theme',
+                'class' => 'frontend\themes\advert\Theme',
                 'basePath' => '@app/',
                 'baseUrl'  => '@web/',
             ],

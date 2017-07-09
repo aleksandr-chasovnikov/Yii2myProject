@@ -19,6 +19,11 @@ use frontend\models\ContactForm;
 class SiteController extends Controller
 {
     /**
+     * Подключаем шаблон представления
+     */
+    public $layout = "bootstrap";
+
+    /**
      * @inheritdoc
      */
     public function behaviors()

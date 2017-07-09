@@ -1,9 +1,5 @@
+<div class="container">
 <div class="row">
-    <div class="col-lg-3 col-sm-4 hidden-xs">
-
-        <? echo \frontend\widgets\HotWidget::widget() ?>
-
-    </div>
 
     <div class="col-lg-9 col-sm-8 ">
 
@@ -19,7 +15,7 @@
                             <?
                             foreach(range(1,count($images) - 1) as $s):
                                 ?>
-                                <li data-target="#myCarousel" data-slide-to="<?=$s ?>" class=""></li>
+                                <li data-target="#myCarousel" data-slide-to="<?= $s ?>" class=""></li>
                             <?
                             endforeach;
                             ?>
@@ -50,7 +46,7 @@
 
 
 
-                <div class="spacer"><h4><span class="glyphicon glyphicon-th-list"></span> Properties Detail</h4>
+                <div class="spacer"><h4><span class="glyphicon glyphicon-th-list"></span> Описание</h4>
                     <p> <?=$model->description ?></p>
                 </div>
                 <!-- <div><h4><span class="glyphicon glyphicon-map-marker"></span> Location</h4>
@@ -69,26 +65,30 @@
                         <p class="area"><span class="glyphicon glyphicon-map-marker"></span> <?=$model->address ?></p>
 
                         <div class="profile">
-                            <span class="glyphicon glyphicon-user"></span> Agent Details
+                            <span class="glyphicon glyphicon-user"></span> Сведения о владельце
                             <p><?=$model->user->email ?><br><?=$model->user->username ?></p>
                         </div>
                     </div>
 
-                    <h6><span class="glyphicon glyphicon-home"></span> Availabilty</h6>
+                <!--     <h6><span class="glyphicon glyphicon-home"></span> Availabilty</h6>
                     <div class="listing-detail">
-                        <span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room"><?=$model->bedroom ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room"><?=$model->livingroom ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking"><?=$model->parking ?></span> <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen"><?=$model->kitchen ?></span> </div>
+                        <span data-toggle="tooltip" data-placement="bottom" data-original-title="Bed Room"><?=$model->bedroom ?>Кухня</span> 
+                        <span data-toggle="tooltip" data-placement="bottom" data-original-title="Living Room"><?=$model->livingroom ?>Кухня</span> 
+                        <span data-toggle="tooltip" data-placement="bottom" data-original-title="Parking"><?=$model->parking ?>Кухня</span> 
+                        <span data-toggle="tooltip" data-placement="bottom" data-original-title="Kitchen"><?=$model->kitchen ?>Кухня</span> 
+                    </div> -->
 
                 </div>
                 <div class="col-lg-12 col-sm-6 ">
                     <div class="enquiry">
-                        <h6><span class="glyphicon glyphicon-envelope"></span> Post Enquiry</h6>
+                        <h6><span class="glyphicon glyphicon-envelope"></span> Отправить запрос</h6>
                         <?
                         $form = \yii\bootstrap\ActiveForm::begin();
                         ?>
-                        <?=$form->field($model_feedback,'email')->textInput(['value' => $current_user['email'], 'placeholder' => 'you@yourdomain.com'])->label(false) ?>
-                        <?=$form->field($model_feedback,'name')->textInput(['value' => $current_user['username'], 'placeholder' => 'Username'])->label(false) ?>
-                        <?=$form->field($model_feedback,'text')->textarea(['rows' => 6, 'placeholder' => 'Whats on your mind?'])->label(false) ?>
-                        <button type="submit" class="btn btn-primary" name="Submit">Send Message</button>
+                        <?=$form->field($model_feedback,'email')->textInput(['value' => $current_user['email'], 'placeholder' => 'email'])->label(false) ?>
+                        <?=$form->field($model_feedback,'name')->textInput(['value' => $current_user['username'], 'placeholder' => 'Имя'])->label(false) ?>
+                        <?=$form->field($model_feedback,'text')->textarea(['rows' => 6, 'placeholder' => 'Что вы хотите сказать?'])->label(false) ?>
+                        <button type="submit" class="btn btn-primary" name="Отправить">Отправить сообщение</button>
 
                         <?
                         \yii\bootstrap\ActiveForm::end();
@@ -99,4 +99,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -17,7 +17,7 @@ use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\Map;
 use dosamigos\google\maps\overlays\Marker;
 
-class MainController extends \app\controllers\BaseController
+class MainController extends \frontend\controllers\BaseController
 {
     /**
      * Подключаемые классы-экшны
@@ -34,7 +34,7 @@ class MainController extends \app\controllers\BaseController
             // ],            
             'page' => [ // Для статичных страниц (Контакты, О нас)
                 'class' => 'yii\web\ViewAction',
-                'layout' => 'inner',
+                'layout' => 'bootstrap',
             ]
         ];
     }
@@ -187,7 +187,7 @@ class MainController extends \app\controllers\BaseController
         }
 
         $user = $model->user;
-        $images = \frontend\components\Common::getImageAdvert($model,false);
+        $images = \frontend\components\Common::getImageAdvert($model);
 
         $current_user = ['email' => '', 'username' => ''];
 

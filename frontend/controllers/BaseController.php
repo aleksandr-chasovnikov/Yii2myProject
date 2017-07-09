@@ -1,12 +1,12 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 abstract class BaseController extends \yii\web\Controller
 {
 	/**
 	 * Подключаем шаблон представления
 	 */
-	public $layout = "bootstrap";
+	public $layout = 'bootstrap';
 
 }

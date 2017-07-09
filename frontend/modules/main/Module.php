@@ -20,7 +20,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         // $this->setLayoutPath('@frontend/views/layouts');
-        $this->setLayoutPath('@frontend/themes/real_home_bootstrap3/views/layouts');
+        $this->setLayoutPath('@frontend/themes/advert/views/layouts');
 
         // custom initialization code goes here
     }

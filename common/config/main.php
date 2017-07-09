@@ -30,7 +30,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'pages/<view:[a-zA-Z0-9-]+>' => 'main/main/page',
+                'page/<action>' => 'main/main/page/<action>',
                 'view-advert/<id:\d+>' => 'main/main/view-advert',
                 'cabinet/<action_cabinet:(settings|change-password)>' => 'cabinet/default/<action_cabinet>'
             ],

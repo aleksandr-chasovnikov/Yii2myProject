@@ -5,8 +5,17 @@ namespace app\modules\main\controllers;
 use frontend\components\Common;
 use yii\db\Query;
 
-class DefaultController extends \app\controllers\BaseController
+class DefaultController extends \frontend\controllers\BaseController
 {
+    /**
+     * 
+     */
+    public function actionFeedback()
+    {
+        $hello = 'hello';
+        return $this->render("feedback", $hello);
+    }
+
     /**
      * Главная страница
      */
